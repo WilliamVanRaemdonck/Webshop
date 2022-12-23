@@ -1,0 +1,11 @@
+Error logged: 2022-12-14 10:53:22 - [ 8192 ]: password_verify(): Passing null to parameter #2 ($hash) of type string is deprecated in file C:\xampp\htdocs\Labos\Webshop\Login.php on line 68
+Error logged: 2022-12-14 12:15:05 - [ 512 ]:  random test error message in file C:\xampp\htdocs\Labos\Webshop\HomePage.php on line 13
+Error logged: 2022-12-14 12:47:27 - [ 0 ]: user login failed in file C:\xampp\htdocs\Labos\Webshop\Login.php on line 25
+Error logged: 2022-12-14 12:47:47 - [ 0 ]: user login failed in file C:\xampp\htdocs\Labos\Webshop\Login.php on line 27
+Error logged: 2022-12-14 12:48:23 - [ 0 ]: user login failed 2 wasn't correct in file C:\xampp\htdocs\Labos\Webshop\Login.php on line 27
+Error logged: 2022-12-14 12:49:11 - [ 0 ]: user login failed, result value =  2 in file C:\xampp\htdocs\Labos\Webshop\Login.php on line 27
+
+Error logged: 2022-12-22 20:21:43 - [ 2 ]: Undefined variable $host in file C:\xampp\htdocs\Labos\webshop\Login.php on line 39
+Error logged: 2022-12-22 20:22:39 - [ 2 ]: Undefined variable $host in file C:\xampp\htdocs\Labos\webshop\Login.php on line 39
+Error logged: 2022-12-23 13:48:11 - [ 2 ]: Undefined array key "OrderID" in file C:\xampp\htdocs\Labos\webshop\HomePage.php on line 279
+Error logged: 2022-12-23 13:48:22 - [ 2 ]: Undefined array key "totaalprijs" in file C:\xampp\htdocs\Labos\webshop\HomePage.php on line 283

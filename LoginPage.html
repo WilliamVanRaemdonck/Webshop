@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>LoginPage</title>
+    <link rel="stylesheet" href="CSS/reset.css">
+    <link rel="stylesheet" href="CSS/index.css">
+    <link rel="stylesheet" href="CSS/LoginPage.css">
+</head>
+
+<body>
+    <div class="center top">
+        <form name="AccountLogin" method="POST" onsubmit="return checkIfEmptyLogin()" action="Login.php">
+            <h3>Login</h3>
+
+            <p id="loginUsernameTitle">Username: </p>
+            <input type="text" name="username" id="loginUsername">
+
+            <p id="loginPasswordTitle">Password: </p>
+            <input type="password" name="password" id="loginPassword">
+
+            <input type="submit" value="Login" name="login">
+        </form>
+    </div>
+
+    <!--User aanmaken-->
+    <div class="center">
+        <form name="MakeAccount" method="POST" onsubmit="return checkIfEmpty()" action="MakeAccount.php">
+            <h3>User Aanmaken</h3>
+            <p id="usernameTitle">Username:</p>
+            <input type="text" id="username" name="username">
+
+            <p id="achternaamTitle">achternaam:</p>
+            <input type="text" id="achternaam" name="achternaam">
+
+            <p id="passwordTitle">Password:</p>
+            <input type="password" id="password" name="password">
+
+            <p id="adresTitle">adres:</p>
+            <input type="text" id="adres" name="adres">
+
+            <input type="submit" value="Registreren" name="login">
+        </form>
+    </div>
+    <!--                Javascript              -->
+    <script>
+        var inputUsername = document.getElementById("username");
+        var inputAchternaam = document.getElementById("achternaam");
+        var inputPassword = document.getElementById("password");
+        var inputAdres = document.getElementById("adres");
+
+        function checkIfEmpty() {
+            if (inputUsername.value == "") {
+                document.getElementById("usernameTitle").style.color = "red";
+                return false;
+            }
+            else {
+                document.getElementById("usernameTitle").style.color = "black";
+            }
+            if (inputAchternaam.value == "") {
+                document.getElementById("achternaamTitle").style.color = "red";
+                return false;
+            }
+            else {
+                document.getElementById("achternaamTitle").style.color = "black";
+            }
+            if (inputPassword.value == "") {
+                document.getElementById("passwordTitle").style.color = "red";
+                return false;
+            }
+            else {
+                document.getElementById("passwordTitle").style.color = "black";
+            }
+            if (inputAdres.value == "") {
+                document.getElementById("adresTitle").style.color = "red";
+                return false;
+            }
+            else {
+                document.getElementById("adresTitle").style.color = "black";
+            }
+        }
+
+
+        var loginUsername = document.getElementById("loginUsername");
+        var loginPassword = document.getElementById("loginPassword");
+
+        function checkIfEmptyLogin() {
+            if (loginUsername.value == "") {
+                document.getElementById("loginUsernameTitle").style.color = "red";
+                return false;
+            }
+            else {
+                document.getElementById("loginUsernameTitle").style.color = "black";
+            }
+
+            if (loginPassword.value == "") {
+                document.getElementById("loginPasswordTitle").style.color = "red";
+                return false;
+            }
+            else {
+                document.getElementById("loginPasswordTitle").style.color = "black";
+            }
+        }
+    </script>
+</body>
+
+</html>

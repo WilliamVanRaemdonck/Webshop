@@ -1,0 +1,59 @@
+ERD beschrijving databank
+
+Databanken:
+
+DBMS : data base managment system
+=> haalt/Steekt data in databank
+
+mySql en 
+
+2 groepen
+SQL 
+    spreadsheet
+    hierarchisch
+    network model => mutliple parents
+    object oriented
+
+    Wij gebruiken relationele methode
+        => 2 dimensieel
+        => data linken door keys
+
+no SQL
+    => grote schaalbaarheid
+    => less reliable
+    => ni kenne
+
+----------------
+
+relationele methode SQL 
+
+ERD
+    entity set bv student
+
+    attributes bv eigenschappen student
+
+    Key value bv studentno (uniek key of primary key) <= onderlijnen!
+        => makkelijk indexeerbaar
+
+    1 = één op één relatie
+    * = één op veel relatie
+
+    elk vierkantje heeft een key
+
+    foreign key, primary key van een andere tabel in andere tabel steken
+
+    bij ster foreign key zettes
+
+    bij many many => linking table maken
+
+    voor diagramme kijk ppt dia 43 en 44 (top voorbeeld)
+
+    product actief parameter moe er zijn.
+
+    
+
+
+
+
+
+

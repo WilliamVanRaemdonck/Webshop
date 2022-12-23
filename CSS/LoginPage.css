@@ -1,0 +1,36 @@
+form{
+    text-align: center;
+    max-width: 250px;
+    background-color: white;
+    
+    border-radius: 5px;
+    border-color: black;
+    border-width: 2px;
+}
+
+input{
+    width: 240px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.center{
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.top{
+    margin-top: 50px;
+}
+
+h3{
+    margin: 5px;
+    background-color: lightgray;
+    border-radius: 5px;
+}
+
+.marginBottom{
+    margin-bottom: 150px;
+}
