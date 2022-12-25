@@ -5,7 +5,7 @@ body{
 
 html{
     background: rgb(255,255,255);
-    background: radial-gradient(circle, rgba(250,250,250,1) 95%, rgba(200,200,200,1) 100%);
+    background: radial-gradient(circle, rgba(250,250,250,1) 80%, rgba(200,200,200,1) 90%);
 }
 
 /*---------------------------------------------------------*/
@@ -55,6 +55,9 @@ html{
 .OntvangstBalk{
     min-height: 150px;
     background-color: #cccccc;
+    background-image: url("Background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .OntvangstBalk::after {
@@ -140,8 +143,14 @@ html{
 }
 
 .adminAddToDB{
-    margin-left: 150px;
-    margin-right: 150px;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+.item{
+    background-image: url("itemBg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 /*---------------------------------------------------------*/
@@ -149,6 +158,10 @@ td{
     min-width: 150px;
     padding-top: 5px;
     padding-bottom: 5px;
+}
+
+.smallTD{
+    max-width: 100px;
 }
 
 /*---------------------------------------------------------*/

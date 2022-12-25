@@ -1,5 +1,8 @@
 <?php
+include_once "Errorhandler.php";
 include_once "DbInfo.php";
+set_error_handler("handleErrors");
+
 $link = mysqli_connect($host, $user, $password) or die("Error: no connection can be made to the host");
 
 //open database

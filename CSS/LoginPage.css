@@ -1,7 +1,7 @@
 form{
     text-align: center;
-    max-width: 250px;
-    background-color: white;
+    max-width: 200px;
+    
     
     border-radius: 5px;
     border-color: black;
@@ -9,9 +9,19 @@ form{
 }
 
 input{
-    width: 240px;
+    width: 200px;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.input{
+    width: 200px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.small{
+    max-width: 50px;
 }
 
 .center{

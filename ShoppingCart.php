@@ -1,6 +1,6 @@
 <?php
 session_start();
-error_reporting(E_ERROR | E_PARSE);        
+error_reporting(E_ERROR | E_PARSE);
 include_once "DbInfo.php";
 
 //session_destroy();
@@ -80,74 +80,72 @@ include_once "DbInfo.php";
         //voor debuggen
         if (isset($_SESSION["username"])) {
             //bestaat er een cart voor een bepaald user nummer
-            if (isset($_SESSION["cart"][$_POST["userNumber"]])) { 
+            if (isset($_SESSION["cart"][$_POST["userNumber"]])) {
                 //als er geen ding in de cart zit me het juist product ID en voeg die toe
                 if (isset($_SESSION["cart"][$_POST["userNumber"]][$_POST["ProductID"]]) != true) {
                     $_SESSION["cart"][$_POST["userNumber"]][$_POST["ProductID"]][0] = $_POST["productBeschrijving"];
                 }
                 $_SESSION["cart"][$_POST["userNumber"]][$_POST["ProductID"]][1] += $_POST["Amount"];
                 unset($_POST);
-
             } else {
-                if(isset($_POST) && empty($_POST) != true){
+                if (isset($_POST) && empty($_POST) != true) {
                     $_SESSION["cart"][$_POST["userNumber"]][$_POST["ProductID"]] = array($_POST["productBeschrijving"], $_POST["Amount"]);
                 }
                 unset($_POST);
             }
             //$_SESSION["cart"][$_POST["userNumber"]][$_POST["ProductID"]] = array($_POST["productBeschrijving"],$_POST["Amount"]);
-
-            //show shoppingcart
-            if (isset($_SESSION['cart'])) {
-                echo "<div class='Product rounded'>";
-                echo "<table>";
-                echo "<tr>";
-                echo "<td>Product</td>";
-                echo "<td>Amount</td>";
-                echo "<td>Prijs</td>";
-                echo "<td></td>";
-                echo "</tr>";
-                $totaalPrijs = 0;
-                foreach($_SESSION['cart'][$_SESSION["userNumber"]] as $index){
+            if (!empty($_SESSION["cart"][$_SESSION["userNumber"]])) {
+                //show shoppingcart
+                if (isset($_SESSION['cart'])) {
+                    echo "<div class='Product rounded'>";
+                    echo "<table>";
                     echo "<tr>";
-                    echo "<td>" . $index[0] . "</td>";
-                    echo "<td>" . $index[1] . "</td>";
-                    
-                    //Product ID vangen 
-                    $mysqli = new mysqli($host, $user, $password, $database);
-                    $query = "SELECT `ProductID`, `prijs` FROM `products` WHERE `Beschrijving` = ?";
-                    $stmt = $mysqli->prepare($query);
-
-                    $beschrijving = htmlspecialchars($index[0]);
-
-                    $stmt->bind_param("s", $beschrijving);
-
-                    $stmt->execute();
-                    $stmt->bind_result($ProductID, $prijs);
-                    $stmt->store_result();
-                    $stmt->fetch();
-                    $mysqli->close();
-
-                    $totaalPrijs += ($prijs * $index[1]);
-
-                    echo "<td>" . $prijs . "€ per item</td>";
-                    echo "<td><a href=\"ShoppingCart.php?index=" . $ProductID . "&action=removeFromCart\"> Delete Item </a></td>";
+                    echo "<td>Product</td>";
+                    echo "<td>Amount</td>";
+                    echo "<td>Prijs</td>";
+                    echo "<td></td>";
                     echo "</tr>";
-                }
-                
-                //show totaalprijs
-                echo "<tr>";
-                echo "<td></td>";
-                echo "<td></td>";
-                echo "<td>". $totaalPrijs ."</td>";
-                echo "<td></td>";
-                echo "</tr>";
+                    $totaalPrijs = 0;
+                    foreach ($_SESSION['cart'][$_SESSION["userNumber"]] as $index) {
+                        echo "<tr>";
+                        echo "<td>" . $index[0] . "</td>";
+                        echo "<td>" . $index[1] . "</td>";
 
-                echo "</table>";
-                echo "</div>";
-                //close link
-                echo "<td><a href=\"ShoppingCart.php?userNumber=" . $_SESSION["username"] . "&action=AddOrderToDb\"> Add Order </a></td>";
+                        //Product ID vangen 
+                        $mysqli = new mysqli($host, $user, $password, $database);
+                        $query = "SELECT `ProductID`, `prijs` FROM `products` WHERE `Beschrijving` = ?";
+                        $stmt = $mysqli->prepare($query);
+
+                        $beschrijving = htmlspecialchars($index[0]);
+
+                        $stmt->bind_param("s", $beschrijving);
+
+                        $stmt->execute();
+                        $stmt->bind_result($ProductID, $prijs);
+                        $stmt->store_result();
+                        $stmt->fetch();
+                        $mysqli->close();
+
+                        $totaalPrijs += ($prijs * $index[1]);
+
+                        echo "<td>" . $prijs . "€ per item</td>";
+                        echo "<td><a href=\"ShoppingCart.php?index=" . $ProductID . "&action=removeFromCart\"> Delete Item </a></td>";
+                        echo "</tr>";
+                    }
+
+                    //show totaalprijs
+                    echo "<tr>";
+                    echo "<td></td>";
+                    echo "<td></td>";
+                    echo "<td>" . $totaalPrijs . "</td>";
+                    echo "<td></td>";
+                    echo "</tr>";
+
+                    echo "</table>";
+                    echo "</div>";
+                    echo "<td><a href=\"ShoppingCart.php?userNumber=" . $_SESSION["username"] . "&action=AddOrderToDb\"> Add Order </a></td>";
+                }
             }
-            
         }
 
 
@@ -189,7 +187,7 @@ if (isset($_GET['action']) && $_GET['action'] == "AddOrderToDb") {
     $stmt->execute();
 
     //store invullen
-    foreach($_SESSION['cart'][$_SESSION["userNumber"]] as $index){
+    foreach ($_SESSION['cart'][$_SESSION["userNumber"]] as $index) {
         //ID vragen van order
         $query = "SELECT MAX(`OrderID`), `UserNumber`, `Datum`, `betaald` FROM `orders` WHERE `UserNumber` = ?";
         $stmt = $mysqli->prepare($query);

@@ -5,7 +5,7 @@ if (isset($_GET['action']) && $_GET['action'] == "activateProduct") {
 
     // get current state 
     $mysqli = new mysqli($host, $user, $password, $database);
-    $query = "SELECT `Aktief` FROM `products` WHERE `ProductID` = ?";
+    $query = "SELECT `Actief` FROM `products` WHERE `ProductID` = ?";
 
     $stmt = $mysqli->prepare($query);
 
@@ -14,25 +14,25 @@ if (isset($_GET['action']) && $_GET['action'] == "activateProduct") {
     $stmt->bind_param("i", $userNumber);
 
     $stmt->execute();
-    $stmt->bind_result($AktiefResult);
+    $stmt->bind_result($ActiefResult);
     $stmt->store_result();
     $stmt->fetch();
 
-    if($AktiefResult == 1){
-        $AktiefResult = 0;
+    if($ActiefResult == 1){
+        $ActiefResult = 0;
     }
     else{
-        $AktiefResult = 1;
+        $ActiefResult = 1;
     }
 
     // update state
     $mysqli = new mysqli($host, $user, $password, $database);
-    $query = "UPDATE `products` SET `Aktief`= ? WHERE `ProductID` = ?;";
+    $query = "UPDATE `products` SET `Actief`= ? WHERE `ProductID` = ?;";
 
     $stmt = $mysqli->prepare($query);
     $ProductID = htmlspecialchars($_GET['index']);
     
-    $stmt->bind_param("ii", $AktiefResult, $ProductID);
+    $stmt->bind_param("ii", $ActiefResult, $ProductID);
 
     $stmt->execute();
     $mysqli->close();

@@ -68,11 +68,11 @@ if (isset($_GET['action']) && $_GET['action'] == "activate") {
     $stmt->bind_param("i", $userNumber);
 
     $stmt->execute();
-    $stmt->bind_result($UserNumberResult, $AktiefResult);
+    $stmt->bind_result($UserNumberResult, $ActiefResult);
     $stmt->store_result();
     $stmt->fetch();
 
-    if ($AktiefResult == 1) {
+    if ($ActiefResult == 1) {
         //set nonactief
         $query = "UPDATE `users` SET `Actief`= ? WHERE `userNumber` = ?";
         $stmt = $mysqli->prepare($query);
@@ -130,7 +130,8 @@ if (isset($_GET['action']) && $_GET['action'] == "logout") {
         - images beter doen                                     done
         - sql close nazien                                      pakt oké
         - orders zien                                           done
-        - HTML verified                                         to do
+        - HTML verified                                         done
+        - fix modify order                                      done
     -->
 
 </head>
@@ -187,7 +188,7 @@ if (isset($_GET['action']) && $_GET['action'] == "logout") {
             <input class="floatR AJAXSearchBalk" type="text" id="AjaxInputBeschrijving" onkeyup="start();" value="Snoep">
 
             <select class="floatR AJAXSearchBalk" id="AjaxInputGroup" onchange="start();">
-                <option value="NoFilter">No Filter</option>    
+                <option value="NoFilter">No Filter</option>
                 <option value="Uniek">Uniek</option>
                 <option value="Mix">Mix</option>
             </select>
@@ -212,7 +213,6 @@ if (isset($_GET['action']) && $_GET['action'] == "logout") {
                 echo "<p class='floatL AJAXSearchBalk'>Your account has been reactivated</p>";
                 echo "</div>";
                 $_SESSION["userActief"] = 1;
-                //header("Location: HomePage.php");
             }
         }
 
@@ -280,22 +280,56 @@ if (isset($_GET['action']) && $_GET['action'] == "logout") {
                 echo "<td>" . $row['OrderID'] . "</td>";
                 echo "<td>" . $row['userNumber'] . "</td>";
                 echo "<td>" . $row['Datum'] . "</td>";
-                if($row['Betaald'] == 1){
+                if ($row['Betaald'] == 1) {
                     $row['Betaald'] = "Ja";
-                }
-                else{
+                } else {
                     $row['Betaald'] = "Nee";
                 }
                 echo "<td>" . $row['Betaald'] . "</td>";
                 echo "<td>" . $row['totaalPrijs'] . "</td>";
-                //echo "<td>" . $row['rechten'] . " : " . "<a href=\"HomePage.php?index=" . $row['UserNumber'] . "&action=promote\"> click </a></td>";
-                //echo "<td>" . $row['Actief'] . " : " . "<a href=\"HomePage.php?index=" . $row['UserNumber'] . "&action=activate\"> click </a></td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+            echo "</div>";
+            echo "<hr>";
+
+            //print current products
+            $query = "SELECT * FROM products";
+            $result = mysqli_query($link, $query) or die("Error: an error has occurred while executing the query.");
+            $numberRecords = mysqli_num_rows($result);
+
+            echo "<div class='Product rounded'>";
+            echo "<h4>Products</h4>";
+            echo "<table>";
+            echo "<tr>";
+            echo "<td class='smallTD' >ProductID</td>";
+            echo "<td class='smallTD' id='prodModBe'>Beschrijving</td>";
+            echo "<td class='smallTD' id='prodModAc'>Actief</td>";
+            echo "<td class='smallTD' id='prodModIm'>Image</td>";
+            echo "<td class='smallTD' id='prodModIt'>ItemGroup</td>";
+            echo "<td class='smallTD' id='prodModPr'>Prijs</td>";
+            echo "<td></td>";
+            echo "</tr>";
+            
+            while ($row = mysqli_fetch_array($result)) {
+                echo "<tr>";
+                echo "<form name='MakeAccount' method='POST' onsubmit='return checkIfEmptyModify()' action='ModifyProduct.php'>";
+                echo "<td class='smallTD'>" . $row['ProductID']  . "</td>";
+                echo "<input type='hidden' id='ProductIDMod' name='ProductIDMod' value='". $row['ProductID'] ."'>";
+                echo "<td class='smallTD'><input class='smallTD' type='text' id='BeschrijvingMod' name='BeschrijvingMod' value='". $row['Beschrijving'] ."'></td>";
+                echo "<td class='smallTD'><input class='smallTD' type='text' id='ActiefMod' name='ActiefMod' value='". $row['Actief'] ."'></td>";
+                echo "<td class='smallTD'><input class='smallTD' type='text' id='imageMod' name='imageMod' value='". $row['Image'] ."'></td>";
+                echo "<td class='smallTD'><input class='smallTD' type='text' id='itemGroupMod' name='itemGroupMod' value='". $row['itemGroup'] ."'></td>";
+                echo "<td class='smallTD'><input class='smallTD' type='text' id='prijsMod' name='prijsMod' value='". $row['prijs'] ."'></td>";
+                echo "<td class='smallTD'><input class='smallTD' type='submit' value='Edit' name='Edit'></td>";
+                echo "</form>";
                 echo "</tr>";
             }
             echo "</table>";
             echo "</div>";
             echo "<hr>";
         ?>
+
             <div class="after">
                 <!--User aanmaken-->
                 <div class="floatR adminAddToDB marginBottom">
@@ -330,8 +364,8 @@ if (isset($_GET['action']) && $_GET['action'] == "logout") {
                         <p id="productNametitle">Naam:</p>
                         <input type="text" id="productName" name="productName">
 
-                        <p id="productAktiefTitle">Aktief (1/0):</p>
-                        <input type="text" id="productAktief" name="productAktief" value="0/1">
+                        <p id="productActiefTitle">Actief (1/0):</p>
+                        <input type="text" id="productActief" name="productActief" value="0/1">
 
                         <p id="ImageTitle">Image (/images/...):</p>
                         <input type="text" id="Image" name="Image" value="Images/Ballen/x.png">
@@ -401,6 +435,49 @@ if (isset($_GET['action']) && $_GET['action'] == "logout") {
         }
     }
 
+    function checkIfEmptyModify() {
+        var BeschrijvingMod = document.getElementById("BeschrijvingMod");
+        var ActiefMod = document.getElementById("ActiefMod");
+        var imageMod = document.getElementById("imageMod");
+        var itemGroupMod = document.getElementById("itemGroupMod");
+        var prijsMod = document.getElementById("prijsMod");
+
+        if (BeschrijvingMod.value == "") {
+            document.getElementById("prodModBe").style.color = "red";
+            return false;
+        } else {
+            document.getElementById("prodModBe").style.color = "black";
+        }
+
+        if (ActiefMod.value == "") {
+            document.getElementById("prodModAc").style.color = "red";
+            return false;
+        } else {
+            document.getElementById("prodModAc").style.color = "black";
+        }
+
+        if (imageMod.value == "") {
+            document.getElementById("prodModIm").style.color = "red";
+            return false;
+        } else {
+            document.getElementById("prodModIm").style.color = "black";
+        }
+
+        if (itemGroupMod.value == "") {
+            document.getElementById("prodModIt").style.color = "red";
+            return false;
+        } else {
+            document.getElementById("prodModIt").style.color = "black";
+        }
+
+        if (prijsMod.value == "") {
+            document.getElementById("prodModPr").style.color = "red";
+            return false;
+        } else {
+            document.getElementById("prodModPr").style.color = "black";
+        }
+    }
+
     //JS
     function checkIfEmpty() {
         var inputUsername = document.getElementById("username");
@@ -451,7 +528,7 @@ if (isset($_GET['action']) && $_GET['action'] == "logout") {
 
     function checkIfEmptyProduct() {
         var productName = document.getElementById("productName");
-        var productAktief = document.getElementById("productAktief");
+        var productActief = document.getElementById("productActief");
         var Image = document.getElementById("Image");
         var group = document.getElementById("group");
         var prijs = document.getElementById("prijs");
@@ -471,14 +548,14 @@ if (isset($_GET['action']) && $_GET['action'] == "logout") {
             document.getElementById("productNametitle").style.color = "black";
         }
 
-        if (productAktief.value == "") {
-            document.getElementById("productAktiefTitle").style.color = "red";
+        if (productActief.value == "") {
+            document.getElementById("productActiefTitle").style.color = "red";
             return false;
-        } else if (productAktief.value != "1" && productAktief.value != "0") {
-            document.getElementById("productAktiefTitle").style.color = "purple";
+        } else if (productActief.value != "1" && productActief.value != "0") {
+            document.getElementById("productActiefTitle").style.color = "purple";
             return false;
         } else {
-            document.getElementById("productAktiefTitle").style.color = "black";
+            document.getElementById("productActiefTitle").style.color = "black";
         }
 
         if (Image.value == "") {

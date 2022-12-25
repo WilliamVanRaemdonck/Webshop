@@ -9,3 +9,26 @@ Error logged: 2022-12-22 20:21:43 - [ 2 ]: Undefined variable $host in file C:\x
 Error logged: 2022-12-22 20:22:39 - [ 2 ]: Undefined variable $host in file C:\xampp\htdocs\Labos\webshop\Login.php on line 39
 Error logged: 2022-12-23 13:48:11 - [ 2 ]: Undefined array key "OrderID" in file C:\xampp\htdocs\Labos\webshop\HomePage.php on line 279
 Error logged: 2022-12-23 13:48:22 - [ 2 ]: Undefined array key "totaalprijs" in file C:\xampp\htdocs\Labos\webshop\HomePage.php on line 283
+Error logged: 2022-12-24 12:54:37 - [ 1054 ]: Unknown column '?' in 'field list' in file C:\xampp\htdocs\Labos\webshop\ModifyProduct.php on line 20
+Error logged: 2022-12-24 12:55:02 - [ 1054 ]: Unknown column '?' in 'field list' in file C:\xampp\htdocs\Labos\webshop\ModifyProduct.php on line 20
+Error logged: 2022-12-24 12:55:24 - [ 1064 ]: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '? = ? WHERE `ProductID` = ?' at line 1 in file C:\xampp\htdocs\Labos\webshop\ModifyProduct.php on line 20
+Error logged: 2022-12-24 12:56:25 - [ 1054 ]: Unknown column '?' in 'field list' in file C:\xampp\htdocs\Labos\webshop\ModifyProduct.php on line 20
+Error logged: 2022-12-24 13:00:24 - [ 1054 ]: Unknown column '?' in 'field list' in file C:\xampp\htdocs\Labos\webshop\ModifyProduct.php on line 20
+Error logged: 2022-12-24 13:02:22 - [ 1064 ]: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '? = '?' WHERE `ProductID` = ?' at line 1 in file C:\xampp\htdocs\Labos\webshop\ModifyProduct.php on line 20
+Error logged: 2022-12-24 13:06:59 - [ 1064 ]: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '? = ?' WHERE `ProductID` = ?' at line 1 in file C:\xampp\htdocs\Labos\webshop\ModifyProduct.php on line 20
+Error logged: 2022-12-24 13:07:20 - [ 1064 ]: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' = '?' WHERE `ProductID` = ?' at line 1 in file C:\xampp\htdocs\Labos\webshop\ModifyProduct.php on line 20
+Error logged: 2022-12-24 13:13:08 - [ 1064 ]: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '= ? WHERE `ProductID` = ?' at line 1 in file C:\xampp\htdocs\Labos\webshop\ModifyProduct.php on line 20
+Error logged: 2022-12-24 13:13:59 - [ 1064 ]: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '= 2 WHERE `ProductID` = ?' at line 1 in file C:\xampp\htdocs\Labos\webshop\ModifyProduct.php on line 20
+Error logged: 2022-12-24 13:20:01 - [ 0 ]: mysqli_prepare() expects exactly 2 arguments, 4 given in file C:\xampp\htdocs\Labos\webshop\ModifyProduct.php on line 21
+Error logged: 2022-12-24 13:20:39 - [ 0 ]: mysqli_prepare() expects exactly 2 arguments, 4 given in file C:\xampp\htdocs\Labos\webshop\ModifyProduct.php on line 21
+Error logged: 2022-12-24 13:21:38 - [ 1064 ]: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '? = ? WHERE `ProductID` = ?' at line 1 in file C:\xampp\htdocs\Labos\webshop\ModifyProduct.php on line 21
+Error logged: 2022-12-24 13:54:05 - [ 2 ]: Undefined array key "ItemGroup" in file C:\xampp\htdocs\Labos\webshop\HomePage.php on line 319
+Error logged: 2022-12-24 14:06:18 - [ 2 ]: include_once(ModifyProduct.html&lt;/td&gt;): Failed to open stream: No such file or directory in file C:\xampp\htdocs\Labos\webshop\HomePage.php on line 316
+Error logged: 2022-12-24 14:06:38 - [ 2 ]: include_once(ModifyProduct.php&lt;/td&gt;): Failed to open stream: No such file or directory in file C:\xampp\htdocs\Labos\webshop\HomePage.php on line 316
+Error logged: 2022-12-24 14:06:40 - [ 2 ]: include_once(ModifyProduct.php&lt;/td&gt;): Failed to open stream: No such file or directory in file C:\xampp\htdocs\Labos\webshop\HomePage.php on line 316
+Error logged: 2022-12-24 14:08:03 - [ 2 ]: include_once(ModifyProduct.php&lt;/td&gt;): Failed to open stream: No such file or directory in file C:\xampp\htdocs\Labos\webshop\HomePage.php on line 316
+Error logged: 2022-12-24 14:08:06 - [ 2 ]: include_once(ModifyProduct.php&lt;/td&gt;): Failed to open stream: No such file or directory in file C:\xampp\htdocs\Labos\webshop\HomePage.php on line 316
+Error logged: 2022-12-24 14:08:42 - [ 2 ]: include_once(ModifyProduct.php&lt;/td&gt;): Failed to open stream: No such file or directory in file C:\xampp\htdocs\Labos\webshop\HomePage.php on line 316
+Error logged: 2022-12-24 14:10:35 - [ 2 ]: include(ModifyProduct.html&lt;/td&gt;): Failed to open stream: No such file or directory in file C:\xampp\htdocs\Labos\webshop\HomePage.php on line 316
+Error logged: 2022-12-25 11:10:05 - [ 0 ]: htmlspecialchars() expects at least 1 argument, 0 given in file C:\xampp\htdocs\Labos\webshop\ModifyProduct.php on line 11
+Error logged: 2022-12-25 11:10:54 - [ 0 ]: The number of variables must match the number of parameters in the prepared statement in file C:\xampp\htdocs\Labos\webshop\ModifyProduct.php on line 17
